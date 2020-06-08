@@ -18,6 +18,7 @@ private:
 		decent = new int;
 	}
 public:
+	static int cardscount;
 	void setsuit(enum suit suit);
 	void setvalue(enum cardvalue val);
 	void setdecent(int dec);
@@ -31,10 +32,16 @@ public:
 		setvalue(two);
 		setdecent(0);
 	}
+	Card(enum suit suit, enum cardvalue val)
+	{
+		init_memory();
+		setsuit(suit);
+		setvalue(val);
+		Card::cardscount++;
+		setdecent(cardscount);
+	}
 	friend std::ostream& operator << (std::ostream& str, const Card& his)
 	{
-		uint8_t* suitt = new uint8_t[7];
-		uint8_t* val = new uint8_t[2];
 		switch (*his.value)
 		{
 		case(two):
@@ -92,7 +99,7 @@ public:
 			str << "Buba";
 			break;
 		}
-		str << endl;
+		str << "Id " << *his.decent << endl;
 		return str;
 	}
 

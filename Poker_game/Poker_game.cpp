@@ -4,18 +4,30 @@
 #include "Player.h"
 #include <iostream>
 
-Card card_1;
-Card card_2;
+int Player::playerscount = 0;
+int Card::cardscount = 0;
 
 int main()
 {
+    Card cards[52];
+    Player players[6];
     std::cout << "Hello World!\n";
-    card_1.setsuit(pika);
-    card_1.setvalue(K);
-    card_2.setsuit(chirva);
-    card_2.setvalue(A);
-    cout << card_1;
-    cout << card_2;
+    cards[0] = {pika,J};
+    cards[1] = {chirva,K};
+    cards[2] = {kresta,Q};
+    cards[3] = {buba,A};
+    cards[4] = { pika,K };
+    cards[5] = { chirva,ten };
+    cards[6] = { kresta,eight };
+    cards[7] = { buba,J };
+    players[0] = { &cards[0],&cards[1],5000};
+    players[1] = { &cards[2],&cards[3],10000};
+    players[2] = { &cards[4],&cards[5],8000 };
+    players[3] = { &cards[6],&cards[7],6000 };
+    for (int i = 0; i < players[0].getplayerscount(); i++)
+    {
+        cout << players[i];
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
