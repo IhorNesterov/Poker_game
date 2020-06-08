@@ -14,10 +14,15 @@ void Player::setmoney(int money)
 
 void Player::setcard(Card (*card_1), Card (*card_2))
 {
-	if ((card_1 != nullptr && card_2 != nullptr) && !card_1->getbusy() && !card_2->getbusy())
+	if (card_1 != nullptr && !card_1->getbusy() && !card_2->getbusy())
 	{
 		this->firstcard = card_1;
-		this->secondcard = card_2;
+		card_1->setbusy();
+		if (card_2 != nullptr && !card_2->getbusy())
+		{
+			this->secondcard = card_2;
+			card_2->setbusy();
+		}
 	}
 	else 
 	{

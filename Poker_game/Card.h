@@ -51,6 +51,7 @@ public:
 		setdecent(cardscount);
 	}
 
+
 	friend std::ostream& operator << (std::ostream& str, const Card& his)
 	{
 		switch (*his.value)
@@ -117,3 +118,4 @@ public:
 	}
 };
 
+void createstack(Card(*cards));

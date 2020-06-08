@@ -26,7 +26,7 @@ void Card::setvalue(enum cardvalue val)
 
 void Card::setdecent(int dec)
 {
-	if (dec >= 0 && dec < 55)
+	if (dec >= 0 && dec < 500)
 	{
 		*this->decent = dec;
 	}
@@ -59,4 +59,21 @@ void Card::setbusy(void)
 bool Card::getbusy()
 {
 	return *this->busy;
+}
+
+void createstack(Card (*cards))
+{
+	int x = 0;
+	enum cardvalue val;
+	enum suit sui;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int u = 0; u < 13; u++)
+		{
+			sui = static_cast<suit>(i);
+			val = static_cast<cardvalue>(u);
+			cards[x] = { sui,val };
+			x++;
+		}
+	}
 }
