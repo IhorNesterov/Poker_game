@@ -14,8 +14,11 @@ private:
 	int* combinationpower;
 	enum Combination* combination;
 	enum Playerstate* state;
+	bool* live;
 	void init_memory(void) //function for dynamic allocate memory
 	{
+		live = new bool;
+		*this->live = true;
 		combination = new enum Combination;
 		state = new enum Playerstate;
 		money = new int;
@@ -28,8 +31,8 @@ public:
 	Player()
 	{
 		init_memory();
-		cout << "constructor" << endl;
 	}
+
 	Player(Card (*first), Card (*second),int money)
 	{
 		init_memory();
@@ -37,8 +40,8 @@ public:
 		setmoney(money);
 		Player::playerscount++;
 		*id = getplayerscount();
-		cout << "constructor2" << endl;
 	}
+
 	friend std::ostream& operator << (std::ostream& str, const Player& his)
 	{
 		str << "Your player id:" << *his.id << "\n";
@@ -46,12 +49,22 @@ public:
 		str << *his.firstcard;
 		str << *his.secondcard;
 		str << "Your money:" << *his.money << "\n";
+		if (*his.live)
+		{
+			str << "You turn\n";
+		}
+		else
+		{
+			str << "Your game is over! See you next time!\n";
+		}
 		return str;
 	}
-	void setcard(Card* card_1,Card* card_2);
+	void setcard(Card (*card_1),Card (*card_2));
 	void setid(int id);
 	void setmoney(int money);
 	void increasemoney(int money);
+	void setlive(void);
+	bool getlive(void);
 	int getplayerscount(void);
 
 };

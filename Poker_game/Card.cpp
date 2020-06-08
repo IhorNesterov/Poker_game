@@ -6,6 +6,10 @@ void Card::setsuit(enum suit suit)
 	{
 		*this->cardsuit = suit;
 	}
+	else
+	{
+		throw "suit is out of range\n";
+	}
 }
 
 void Card::setvalue(enum cardvalue val)
@@ -14,6 +18,10 @@ void Card::setvalue(enum cardvalue val)
 	{
 		*this->value = val;
 	}
+	else
+	{
+		throw "Cardvalue is out of range\n";
+	}
 }
 
 void Card::setdecent(int dec)
@@ -21,6 +29,10 @@ void Card::setdecent(int dec)
 	if (dec >= 0 && dec < 55)
 	{
 		*this->decent = dec;
+	}
+	else
+	{
+		throw "Decent is out of range\n";
 	}
 }
 
@@ -37,4 +49,14 @@ enum cardvalue Card::getvalue()
 int Card::getdecent()
 {
 	return *this->decent;
+}
+
+void Card::setbusy(void)
+{
+	*this->busy = true;
+}
+
+bool Card::getbusy()
+{
+	return *this->busy;
 }

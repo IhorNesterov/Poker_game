@@ -6,14 +6,22 @@ void Player::setmoney(int money)
 	{
 		*this->money = money;
 	}
+	else
+	{
+		throw "Money is out of range\n";
+	}
 }
 
 void Player::setcard(Card (*card_1), Card (*card_2))
 {
-	if (card_1 != nullptr && card_2 != nullptr)
+	if ((card_1 != nullptr && card_2 != nullptr) && !card_1->getbusy() && !card_2->getbusy())
 	{
 		this->firstcard = card_1;
 		this->secondcard = card_2;
+	}
+	else 
+	{
+		throw "Card for player is busy\n";
 	}
 }
 
@@ -22,6 +30,10 @@ void Player::setid(int id)
 	if (id > 0)
 	{
 		*this->id = id;
+	}
+	else
+	{
+		throw "id is not in range\n";
 	}
 }
 
@@ -39,7 +51,7 @@ void Player::increasemoney(int money)
 		}
 		else
 		{
-			
+			throw "You game is over\n";
 		}
 	}
 }
@@ -47,4 +59,14 @@ void Player::increasemoney(int money)
 int Player::getplayerscount(void)
 {
 	return Player::playerscount;
+}
+
+void Player::setlive(void)
+{
+	*this->live = false;
+}
+
+bool Player::getlive(void)
+{
+	return *this->live;
 }

@@ -14,7 +14,7 @@ int main()
 {
     Card* cards = new Card[52];
     Player* players = new Player[6];
-    std::cout << "Hello World!\n";
+    std::cout << "Starting the game!\n";
     cards[0] = {pika,J};
     cards[1] = {chirva,K};
     cards[2] = {kresta,Q};

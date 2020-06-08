@@ -12,8 +12,11 @@ private:
 	enum suit* cardsuit;
 	enum cardvalue* value;
 	int* decent;
+	bool* busy;
 	void init_memory(void) //function for dynamic allocate memory
 	{
+		busy = new bool;
+		*this->busy = false;
 		cardsuit = new enum suit;
 		value = new enum cardvalue;
 		decent = new int;
@@ -25,6 +28,8 @@ public:
 	void setsuit(enum suit suit);
 	void setvalue(enum cardvalue val);
 	void setdecent(int dec);
+	void setbusy(void);
+	bool getbusy(void);
 	enum suit getsuit();
 	enum cardvalue getvalue();
 	int getdecent();
