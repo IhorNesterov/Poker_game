@@ -8,6 +8,7 @@ using namespace std;
 class Card
 {
 private:
+
 	enum suit* cardsuit;
 	enum cardvalue* value;
 	int* decent;
@@ -17,7 +18,9 @@ private:
 		value = new enum cardvalue;
 		decent = new int;
 	}
+
 public:
+
 	static int cardscount;
 	void setsuit(enum suit suit);
 	void setvalue(enum cardvalue val);
@@ -25,6 +28,7 @@ public:
 	enum suit getsuit();
 	enum cardvalue getvalue();
 	int getdecent();
+
 	Card()
 	{
 		init_memory();
@@ -32,6 +36,7 @@ public:
 		setvalue(two);
 		setdecent(0);
 	}
+
 	Card(enum suit suit, enum cardvalue val)
 	{
 		init_memory();
@@ -40,6 +45,7 @@ public:
 		Card::cardscount++;
 		setdecent(cardscount);
 	}
+
 	friend std::ostream& operator << (std::ostream& str, const Card& his)
 	{
 		switch (*his.value)
@@ -84,6 +90,7 @@ public:
 			str << "A ";
 			break;
 		}
+
 		switch (*his.cardsuit)
 		{
 		case(pika):
@@ -99,9 +106,9 @@ public:
 			str << "Buba";
 			break;
 		}
-		str << "Id " << *his.decent << endl;
+
+		str << " Id " << *his.decent << endl;
 		return str;
 	}
-
 };
 

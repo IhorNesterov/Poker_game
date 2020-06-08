@@ -21,9 +21,6 @@ private:
 		money = new int;
 		id = new int;
 		combinationpower = new int;
-		firstcard = new Card;
-		secondcard = new Card;
-		
 	}
 
 public:
@@ -33,7 +30,7 @@ public:
 		init_memory();
 		cout << "constructor" << endl;
 	}
-	Player(Card* first, Card* second,int money)
+	Player(Card (*first), Card (*second),int money)
 	{
 		init_memory();
 		setcard(first,second);

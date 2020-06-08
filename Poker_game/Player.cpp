@@ -8,7 +8,7 @@ void Player::setmoney(int money)
 	}
 }
 
-void Player::setcard(Card* card_1, Card* card_2)
+void Player::setcard(Card (*card_1), Card (*card_2))
 {
 	if (card_1 != nullptr && card_2 != nullptr)
 	{
