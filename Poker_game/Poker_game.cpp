@@ -1,11 +1,21 @@
 // Poker_game.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include "Card.h"
+#include "Player.h"
 #include <iostream>
+
+Card card_1;
+Card card_2;
 
 int main()
 {
     std::cout << "Hello World!\n";
+    card_1.setsuit(pika);
+    card_1.setvalue(K);
+    card_2.setsuit(chirva);
+    card_2.setvalue(A);
+    cout << card_1;
+    cout << card_2;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
