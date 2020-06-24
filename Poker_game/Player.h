@@ -31,6 +31,8 @@ public:
 	Player()
 	{
 		init_memory();
+		Player::playerscount++;
+		*id = getplayerscount();
 	}
 
 	Player(Card (*first), Card (*second),int money)

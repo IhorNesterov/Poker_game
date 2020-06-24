@@ -61,19 +61,8 @@ bool Card::getbusy()
 	return *this->busy;
 }
 
-void createstack(Card (*cards))
+void Card::setfree()
 {
-	int x = 0;
-	enum cardvalue val;
-	enum suit sui;
-	for (int i = 0; i < 4; i++)
-	{
-		for (int u = 0; u < 13; u++)
-		{
-			sui = static_cast<suit>(i);
-			val = static_cast<cardvalue>(u);
-			cards[x] = { sui,val };
-			x++;
-		}
-	}
+	*this->busy = false;
 }
+

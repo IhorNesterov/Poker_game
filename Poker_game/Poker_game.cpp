@@ -5,31 +5,53 @@
 #include "Table.h"
 #include <algorithm>
 #include <iostream>
+#include "Game.h"
 
 int Player::playerscount = 0;
 int Card::cardscount = 0;
 int f;
 int x;
+int tab[5];
 
 
 int main()
 {
-    Card* cards = new Card[52];
-    Player* players = new Player[6];
-    std::cout << "Starting the game!\n";
-    createstack(cards);
-    players[0] = {&cards[0],&cards[1],5000};
-    players[1] = {&cards[2],&cards[3],10000};
-    players[2] = {&cards[4],&cards[5],8000};
-    players[3] = {&cards[6],&cards[7],6000};
-    for (int i = 0; i < players[0].getplayerscount(); i++)
-    {
-        cout << players[i];
+    try
+    {     
+        Card* cards = new Card[52];
+        Player* players = new Player[6];
+        Table* table = new Table;
+        Game* game = new Game;
+
+        game->createstack(cards);
+
+        for (int i = 0; i < 20; i++)
+        {
+            std::cout << "Starting the game!\n";
+
+            game->getcardsPlayers(cards, players);
+
+            table->setplayers(players);
+            table->setmoney(100000, 200, 400);
+
+            game->getcardsTable(cards, table);
+
+            for (int i = 0; i < players[0].getplayerscount(); i++)
+            {
+                cout << players[i];
+            }
+
+            cout << table[0];
+            game->freecards(cards);
+            cout << "End game\n";
+        }
     }
-    Table table(players, cards, 100000, 20);
-    cout << table;
-    cin >> f;
-}
+    catch (const char* exnum)
+    {
+        cout << exnum;
+    }
+ } 
+ 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

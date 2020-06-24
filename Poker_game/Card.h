@@ -29,6 +29,7 @@ public:
 	void setvalue(enum cardvalue val);
 	void setdecent(int dec);
 	void setbusy(void);
+	void setfree();
 	bool getbusy(void);
 	enum suit getsuit();
 	enum cardvalue getvalue();
@@ -113,7 +114,8 @@ public:
 			break;
 		}
 
-		str << " Id " << *his.decent << endl;
+		//str << " Id " << *his.decent << endl;
+		str << endl;
 		return str;
 	}
 };

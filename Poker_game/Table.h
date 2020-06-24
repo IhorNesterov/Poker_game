@@ -6,7 +6,11 @@ class Table
 {
 private:
 	Player* players;
-	Card* tablecards;
+	Card* firstcard;
+	Card* secondcard;
+	Card* thirdcard;
+	Card* fourcard;
+	Card* fivecard;
 	int* money;
 	int* lowbet;
 	int* highbet;
@@ -18,20 +22,41 @@ private:
 	}
 
 public:
+	Table()
+	{
+		init_memory();
+	}
 
-	Table(Player (*player), Card(*card), int money, int lowbet)
+	Table(Player (*player), Card(*firstcard), Card(*secondcard), Card(*thirdcard), Card(*fourcard), Card(*fivecard), int money, int lowbet)
 	{
 		init_memory();
 		this->players = player;
-		this->tablecards = card;
+		this->firstcard = firstcard;
+		this->secondcard = secondcard;
+		this->thirdcard = thirdcard;
+		this->fourcard = fourcard;
+		this->fivecard = fivecard;
 		*this->money = money;
 		*this->lowbet = lowbet;
 		*this->highbet = lowbet * 2;
 	}
+
 	friend std::ostream& operator << (std::ostream& str, const Table& his)
 	{
 		str << "Cards on the table:\n";
-		str << his.tablecards[8] << his.tablecards[9] << his.tablecards[10] << his.tablecards[11] << his.tablecards[12];
+		str << *his.firstcard << *his.secondcard << *his.thirdcard << *his.fourcard << *his.fivecard;
+		str << "Money on the table:" << endl;
+		str << *his.money << endl;
 		return str;
 	}
+
+	void setcard(Card(*card), int num);
+	void setmoney(int money, int lowbet, int highbet);
+	void setmoney(int money);
+	void increasemoney(int moneyincrease);
+    void setplayers(Player(*players));
+
+	int getmoney();
+
+
 };
