@@ -12,6 +12,29 @@ void Player::setmoney(int money)
 	}
 }
 
+int Player::getmoney(void)
+{
+	return *this->money;
+}
+
+int Player::getid(void)
+{
+	return *this->id;
+}
+
+void Player::setname(string nam)
+{
+	if (&nam != NULL)
+	{
+		cout << "Set name for " << *id << endl;
+		this->name = nam;
+	}
+	else
+	{
+		cout << "name is false or NULL pointer\n";
+	}
+}
+
 void Player::setcard(Card (*card_1), Card (*card_2))
 {
 	if (card_1 != nullptr && !card_1->getbusy())
@@ -75,4 +98,32 @@ void Player::setlive(void)
 bool Player::getlive(void)
 {
 	return *this->live;
+}
+
+Action Player::action(void)
+{
+	uint8_t key;
+	Action action;
+	cout << "Choose your action" << endl;
+	cout << "Q - Call" << endl;
+	cout << "W - Check" << endl;
+	cout << "E - Fold" << endl;
+	cout << "R - Raise" << endl;
+	cin >> key;
+	switch (key)
+	{
+	case 'Q':
+		action = Call;
+		break;
+	case 'W':
+		action = Check;
+		break;
+	case 'E':
+		action = Fold;
+		break;
+	case 'R':
+		action = Raise;
+		break;
+	}
+	return action;
 }

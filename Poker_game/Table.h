@@ -55,8 +55,7 @@ public:
 	void setmoney(int money);
 	void increasemoney(int moneyincrease);
     void setplayers(Player(*players));
-
-	int getmoney();
+    int getmoney();
 
 
 };

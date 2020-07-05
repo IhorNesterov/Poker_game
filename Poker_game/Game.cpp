@@ -3,7 +3,6 @@
 int Game::getRandomNumber(int min, int max)
 {
     static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
-    // Равномерно распределяем рандомное число в нашем диапазоне
     return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
@@ -22,6 +21,9 @@ void Game::getcardsPlayers(Card(*cards), Player(*players))
         } while (cards[tab[1]].getbusy());
         players[i].setcard(&cards[tab[0]], &cards[tab[1]]);
         players[i].setmoney(1000 * i + 1);
+        string s;
+        s += to_string(players[i].getid());
+        players[i].setname("Bot player " + s);
     }
 }
 
@@ -60,6 +62,32 @@ void Game::createstack(Card(*cards))
             cards[x] = { sui,val };
             x++;
         }
+    }
+}
+
+void Game::getmoneyfromplayer(Player(*player), Table(*table), int money)
+{
+    if (player->getmoney() >= money)
+    {
+        table->increasemoney(money);
+        player->increasemoney(-money);
+    }
+    else
+    {
+        throw "Player dont have money\n";
+    }
+}
+
+void Game::getmoneytoplayer(Player(*player), Table(*table), int money)
+{
+    if (table->getmoney() >= money)
+    {
+        table->increasemoney(-money);
+        player->increasemoney(money);
+    }
+    else
+    {
+        throw "Table dont have money\n";
     }
 }
 

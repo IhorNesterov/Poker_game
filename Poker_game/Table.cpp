@@ -29,7 +29,7 @@ void Table::setcard(Card(*card), int num)
 
 void Table::setmoney(int money, int lowbet, int highbet)
 {
-	if (money > 0 && lowbet > 0 && highbet > 0)
+	if (money >= 0 && lowbet > 0 && highbet > 0)
 	{
 		*this->money = money;
 		*this->lowbet = lowbet;
@@ -43,7 +43,7 @@ void Table::setmoney(int money, int lowbet, int highbet)
 
 void Table::setmoney(int money)
 {
-	if (money > 0)
+	if (money >= 0)
 	{
 		*this->money = money;
 	}
@@ -57,7 +57,9 @@ void Table::increasemoney(int moneyincrease)
 {
 	if (moneyincrease > 0)
 	{
+		cout << this->getmoney() << endl;
 		this->setmoney(this->getmoney() + moneyincrease);
+		cout << this->getmoney() << endl;
 	}
 	else if (moneyincrease < 0)
 	{
@@ -79,8 +81,5 @@ void Table::setplayers(Player(*players))
 
 int Table::getmoney()
 {
-	if (*this->money != NULL)
-	{
-		return *this->money;
-	}
+	return *this->money;
 }

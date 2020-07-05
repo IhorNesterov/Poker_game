@@ -14,4 +14,6 @@ public:
 	void getcardsTable(Card(*cards), Table(*table));
 	void freecards(Card(*cards));
 	void createstack(Card(*cards));
+	void getmoneyfromplayer(Player(*player), Table(*table),int money);
+	void getmoneytoplayer(Player(*player), Table(*table), int money);
 };

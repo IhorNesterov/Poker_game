@@ -11,7 +11,7 @@ int Player::playerscount = 0;
 int Card::cardscount = 0;
 int f;
 int x;
-int tab[5];
+
 
 
 int main()
@@ -25,14 +25,12 @@ int main()
 
         game->createstack(cards);
 
-        for (int i = 0; i < 20; i++)
-        {
             std::cout << "Starting the game!\n";
 
             game->getcardsPlayers(cards, players);
 
             table->setplayers(players);
-            table->setmoney(100000, 200, 400);
+            table->setmoney(0, 200, 400);
 
             game->getcardsTable(cards, table);
 
@@ -42,10 +40,16 @@ int main()
             }
 
             cout << table[0];
+            game->getmoneyfromplayer(&players[4], table, 500);
+            cout << players[4];
+            cout << table[0];
+            game->getmoneytoplayer(&players[3], table, 200);
+            cout << table[0];
+            cout << players[3];
             game->freecards(cards);
             cout << "End game\n";
         }
-    }
+    
     catch (const char* exnum)
     {
         cout << exnum;
