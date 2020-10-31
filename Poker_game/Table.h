@@ -56,6 +56,6 @@ public:
 	void increasemoney(int moneyincrease);
     void setplayers(Player(*players));
     int getmoney();
-
+	Card* getcard(int pos);
 
 };

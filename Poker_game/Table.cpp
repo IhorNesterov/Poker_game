@@ -27,6 +27,28 @@ void Table::setcard(Card(*card), int num)
 	}
 }
 
+Card* Table::getcard(int pos)
+{
+		switch (pos)
+		{
+		case 1:
+			return this->firstcard;
+			break;
+		case 2:
+			return this->secondcard;
+			break;
+		case 3:
+			return this->thirdcard;
+			break;
+		case 4:
+			return this->fourcard;
+			break;
+		case 5:
+			return this->fivecard;
+			break;
+		}
+}
+
 void Table::setmoney(int money, int lowbet, int highbet)
 {
 	if (money >= 0 && lowbet > 0 && highbet > 0)

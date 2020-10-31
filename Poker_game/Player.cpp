@@ -100,17 +100,34 @@ bool Player::getlive(void)
 	return *this->live;
 }
 
-Card* getcard(int pos)
+Card* Player::getcard(int pos)
 {
 	switch (pos)
 	{
 	case 1:
-		return *this->firstcard;
+		return this->firstcard;
 		break;
 	case 2:
-		return *this->secondcard;
+		return this->secondcard;
 		break;
 	}
+}
+
+void Player::setcombinationpower(int power)
+{
+	if (power > 0)
+	{
+		*this->combinationpower = power;
+	}
+	else
+	{
+		throw "Combination power out of range!\n";
+	}
+}
+
+int Player::getcombinationpower(void)
+{
+	return *this->combinationpower;
 }
 
 Action Player::action(void)

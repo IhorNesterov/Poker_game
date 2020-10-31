@@ -89,6 +89,8 @@ public:
 	bool getlive(void);
 	int getid(void);
 	int getplayerscount(void);
+	void setcombinationpower(int power);
+	int getcombinationpower(void);
 	Action action(void);
 	Card* getcard(int pos);
 };

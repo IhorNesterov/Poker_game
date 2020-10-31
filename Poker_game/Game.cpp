@@ -97,6 +97,24 @@ void Game::getcombinationpower(Player(*player), Table(*table))
     switch (this->stage)
     {
     case Preflop:
-        if(player.get)
+        if (player->getcard(1)->getdecent() == player->getcard(2)->getdecent())
+        {
+            player->setcombinationpower(100 + player->getcard(1)->getdecent());
+        }
+        else
+        {
+            player->setcombinationpower(player->getcard(1)->getdecent());
+        }
+        break;
+
+    case Flop:
+        Card* cards = new Card[5];
+        cards[0] = player->getcard(1);
+        cards[1] = player->getcard(2);
+        cards[2] = table->getcard(1);
+        cards[3] = table->getcard(2);
+        cards[4] = table->getcard(3);
+
+        
     }
 }

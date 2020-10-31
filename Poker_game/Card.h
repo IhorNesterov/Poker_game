@@ -53,6 +53,12 @@ public:
 	}
 
 
+	void operator = (Card* his)
+	{
+		this->setsuit(*his->cardsuit);
+		this->setvalue(*his->value);
+	}
+
 	friend std::ostream& operator << (std::ostream& str, const Card& his)
 	{
 		switch (*his.value)
