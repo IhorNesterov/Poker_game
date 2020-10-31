@@ -100,6 +100,19 @@ bool Player::getlive(void)
 	return *this->live;
 }
 
+Card* getcard(int pos)
+{
+	switch (pos)
+	{
+	case 1:
+		return *this->firstcard;
+		break;
+	case 2:
+		return *this->secondcard;
+		break;
+	}
+}
+
 Action Player::action(void)
 {
 	uint8_t key;

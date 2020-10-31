@@ -90,5 +90,6 @@ public:
 	int getid(void);
 	int getplayerscount(void);
 	Action action(void);
+	Card* getcard(int pos);
 };
 

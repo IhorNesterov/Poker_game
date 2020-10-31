@@ -91,3 +91,12 @@ void Game::getmoneytoplayer(Player(*player), Table(*table), int money)
     }
 }
 
+void Game::getcombinationpower(Player(*player), Table(*table))
+{
+
+    switch (this->stage)
+    {
+    case Preflop:
+        if(player.get)
+    }
+}
