@@ -1,52 +1,18 @@
 #include "Table.h"
 
 
-void Table::setcard(Card(*card), int num)
+void Table::setcard(Card *card, int num)
 {
 	if (card != NULL)
 	{
-		switch (num)
-		{
-		case 0:
-			this->firstcard = card;
-			break;
-		case 1:
-			this->secondcard = card;
-			break;
-		case 2:
-			this->thirdcard = card;
-			break;
-		case 3:
-			this->fourcard = card;
-			break;
-		case 4:
-			this->fivecard = card;
-			break;
-		}
+		cards[num] = card;
 		card->setbusy();
 	}
 }
 
-Card* Table::getcard(int pos)
+Card Table::getcard(int pos)
 {
-		switch (pos)
-		{
-		case 1:
-			return this->firstcard;
-			break;
-		case 2:
-			return this->secondcard;
-			break;
-		case 3:
-			return this->thirdcard;
-			break;
-		case 4:
-			return this->fourcard;
-			break;
-		case 5:
-			return this->fivecard;
-			break;
-		}
+	return cards[pos];
 }
 
 void Table::setmoney(int money, int lowbet, int highbet)

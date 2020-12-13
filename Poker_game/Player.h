@@ -8,7 +8,7 @@
 #include <set>
 #include <iostream>
 #include <string>
-enum Combination{highcard,pair,twopair,set,street,flash,fullhaus,kare,streetflash};
+enum class Combination{highcard,pair,twopair,set,street,flash,fullhaus,kare,streetflash};
 enum Playerstate{Dealer,smallbet,largebet,usual};
 enum Action{Fold,Call,Raise,Check};
 
@@ -20,8 +20,7 @@ private:
 	int* money;
 	int* id;
 	string name;
-	Card* firstcard;
-	Card* secondcard;
+	Card* cards;
 	int* combinationpower;
 	enum Combination* combination;
 	enum Playerstate* state;
@@ -30,12 +29,13 @@ private:
 	{
 		live = new bool;
 		*this->live = true;
-		combination = new enum Combination;
+		combination = new Combination;
 		state = new enum Playerstate;
 		money = new int;
 		id = new int;
 		combinationpower = new int;
 		name = nam;
+		cards = new Card[2];
 	}
 	
 public:
@@ -66,8 +66,8 @@ public:
 	{
 		str << "Your name:" << his.name << "\n";
 		str << "Your cards:\n";
-		str << *his.firstcard;
-		str << *his.secondcard;
+		str << his.cards[0];
+		str << his.cards[1];
 		str << "Your money:" << *his.money << "\n";
 		if (*his.live)
 		{
@@ -80,7 +80,7 @@ public:
 		return str;
 	}
 	void setname(string nam);
-	void setcard(Card (*card_1),Card (*card_2));
+	void setcard(Card *card_1,Card *card_2);
 	void setid(int id);
 	void setmoney(int money);
 	int  getmoney(void);

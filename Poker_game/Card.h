@@ -55,8 +55,8 @@ public:
 
 	void operator = (Card* his)
 	{
-		this->setsuit(*his->cardsuit);
-		this->setvalue(*his->value);
+		this->setsuit(his->getsuit());
+		this->setvalue(his->getvalue());
 	}
 
 	friend std::ostream& operator << (std::ostream& str, const Card& his)
@@ -126,4 +126,4 @@ public:
 	}
 };
 
-void createstack(Card(*cards));
+

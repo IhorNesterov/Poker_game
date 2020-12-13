@@ -40,12 +40,6 @@ int main()
             }
 
             cout << table[0];
-            game->getmoneyfromplayer(&players[4], table, 500);
-            cout << players[4];
-            cout << table[0];
-            game->getmoneytoplayer(&players[3], table, 200);
-            cout << table[0];
-            cout << players[3];
             game->freecards(cards);
             cout << "End game\n";
         }

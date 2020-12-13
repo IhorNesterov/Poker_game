@@ -35,16 +35,16 @@ void Player::setname(string nam)
 	}
 }
 
-void Player::setcard(Card (*card_1), Card (*card_2))
+void Player::setcard(Card *card_1, Card *card_2)
 {
 	if (card_1 != nullptr && !card_1->getbusy())
 	{
 	
-		this->firstcard = card_1;
+		this->cards[0] = card_1;
 		card_1->setbusy();
 		if (card_2 != nullptr && !card_2->getbusy())
 		{
-			this->secondcard = card_2;
+			this->cards[1] = card_2;
 			card_2->setbusy();
 		}
 	}
@@ -102,15 +102,7 @@ bool Player::getlive(void)
 
 Card* Player::getcard(int pos)
 {
-	switch (pos)
-	{
-	case 1:
-		return this->firstcard;
-		break;
-	case 2:
-		return this->secondcard;
-		break;
-	}
+	return &this->cards[pos];
 }
 
 void Player::setcombinationpower(int power)

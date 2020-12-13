@@ -91,9 +91,19 @@ void Game::getmoneytoplayer(Player(*player), Table(*table), int money)
     }
 }
 
+void Game::setstage(GameStage st)
+{
+    this->stage = st;
+}
+
+
+GameStage Game::getstage(void)
+{
+    return this->stage;
+}
+
 void Game::getcombinationpower(Player(*player), Table(*table))
 {
-
     switch (this->stage)
     {
     case Preflop:
@@ -109,12 +119,80 @@ void Game::getcombinationpower(Player(*player), Table(*table))
 
     case Flop:
         Card* cards = new Card[5];
+        Card* card = new Card;
         cards[0] = player->getcard(1);
         cards[1] = player->getcard(2);
         cards[2] = table->getcard(1);
         cards[3] = table->getcard(2);
         cards[4] = table->getcard(3);
 
+        for (int i = 0; i < 5; i++) 
+        {
+            for (int j = 0; j < 4; j++) 
+            {
+                if (cards[j].getvalue() > cards[j + 1].getvalue()) 
+                {
+                    *card = cards[j]; // создали дополнительную переменную
+                    cout << *card;
+                    cards[j] = cards[j + 1]; // меняем местами
+                    cards[j + 1] = *card; // значения элементов
+                }
+            }
+        }
+
+        delete card;
+
+        //streetflash check
+        if (cards[0].getsuit() == cards[1].getsuit() == cards[2].getsuit() == cards[3].getsuit() == cards[4].getsuit())
+        {
+            bool streetcheck = false;
+            for (int i = 0; i < 4; i++)
+            {
+                if (cards[i + 1].getvalue() - cards[i].getvalue() == 1)
+                {
+                    streetcheck = true;
+                }
+                else
+                {
+                    streetcheck = false;
+                }
+            }
+            if (streetcheck)
+            {
+                player->setcombinationpower(900 + cards[4].getvalue()); //street flash
+            }
+            else
+            {
+                player->setcombinationpower(600 + cards[4].getvalue()); //flash
+            }
+        }
+
+        //kare check
+        for (int i = 0; i < 2; i++)
+        {
+            if (cards[i].getvalue() == cards[i + 1].getvalue() == cards[i + 2].getvalue() == cards[i + 3].getvalue())
+            {
+                player->setcombinationpower(800 + cards[i + 3].getvalue());
+                return;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (cards[i].getvalue() == cards[i + 1].getvalue() == cards[i + 2].getvalue())
+            {
+                if (cards[i + 3].getvalue() == cards[i + 4].getvalue())
+                {
+                    player->setcombinationpower(800 + cards[3].getvalue());
+                        return;
+                }
+                return;
+            }
+            return;
+        }
+            
+
+            
         
     }
 }
